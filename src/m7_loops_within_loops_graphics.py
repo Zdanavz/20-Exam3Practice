@@ -91,7 +91,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # Done: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -105,7 +105,7 @@ def hourglass(window, n, point, radius, color):
     # -------------------------------------------------------------------------
 
     trX=point.x-(n-1)*radius
-    trY=point.y-(n-1)*radius
+    trY=point.y-(n-1)*2 * radius * math.sin(1.0472)
     X=trX
     Y=trY
     num=n
@@ -122,7 +122,7 @@ def hourglass(window, n, point, radius, color):
         num=num-1
     num=n
     brX=point.x-(n-1)*radius
-    brY=point.y+(n-1)*radius
+    brY=point.y+(n-1)*2 * radius * math.sin(1.0472)
     X=brX
     Y=brY
     for k in range(n-1):
@@ -217,6 +217,29 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
+
+    x1=square.center.x-square.length_of_each_side/2
+    y1=square.center.y-square.length_of_each_side/2
+    x2 = square.center.x + square.length_of_each_side / 2
+    y2 = square.center.y + square.length_of_each_side / 2
+
+    for k in range(m):
+        r1=rg.Rectangle(rg.Point(x1,y1),rg.Point(x2,y2))
+        r1.attach_to(window)
+        x1=x2
+        y1=y1-square.length_of_each_side*math.sin(1.0472)
+        x2=x2+(k+2)*square.length_of_each_side
+        y2=y2+square.length_of_each_side*math.sin(1.0472)
+
+    cx=square.center.x
+    cy=square.center.y
+
+    for k in range(m):
+        hourglass(window,k+1,rg.Point(cx,cy),square.length_of_each_side/2,colors[k%len(colors)])
+        cx=cx+1.5*square.length_of_each_side+square.length_of_each_side*k
+    window.render()
+
+
 
 
 # -----------------------------------------------------------------------------
