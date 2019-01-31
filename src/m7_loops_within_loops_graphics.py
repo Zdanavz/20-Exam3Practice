@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Zack Z.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -30,6 +30,7 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
 ###############################################################################
 
 import rosegraphics as rg
+import math
 
 
 def main():
@@ -102,6 +103,42 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
+
+    trX=point.x-(n-1)*radius
+    trY=point.y-(n-1)*radius
+    X=trX
+    Y=trY
+    num=n
+    for k in range(n):
+        for j in range(num):
+            c1=rg.Circle(rg.Point(X,Y),radius)
+            l1=rg.Line(rg.Point(X-radius,Y),rg.Point(X+radius,Y))
+            c1.fill_color=color
+            c1.attach_to(window)
+            l1.attach_to(window)
+            X=X+2*radius
+        X=trX+radius*(k+1)
+        Y=trY+2*radius*math.sin(1.0472)*(k+1)
+        num=num-1
+    num=n
+    brX=point.x-(n-1)*radius
+    brY=point.y+(n-1)*radius
+    X=brX
+    Y=brY
+    for k in range(n-1):
+        for j in range(num):
+            c1 = rg.Circle(rg.Point(X, Y), radius)
+            l1 = rg.Line(rg.Point(X - radius, Y), rg.Point(X + radius, Y))
+            c1.fill_color = color
+            c1.attach_to(window)
+            l1.attach_to(window)
+            X = X + 2 * radius
+        X = brX + radius * (k + 1)
+        Y = brY - 2 * radius * math.sin(1.0472) * (k + 1)
+        num = num - 1
+    window.render()
+
+
 
 
 def run_test_many_hourglasses():
