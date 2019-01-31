@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Zack Z.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -46,7 +46,7 @@ def main():
 def run_test_practice_problem3():
     """ Tests the   practice_problem3  function. """
     ###########################################################################
-    # TODO: 2. Implement this TEST function.
+    # Done: 2. Implement this TEST function.
     #   It TESTS the  practice_problem3  function defined below.
     #   Include at least ** 2 ** ADDITIONAL tests beyond those we wrote.
     #
@@ -137,6 +137,25 @@ def run_test_practice_problem3():
     ###########################################################################
 
 
+    #Test 15
+    Actual=practice_problem3(2,5,0)
+    Expected=[2,6,7,8,12]
+
+    print()
+    print('Test 15')
+    print('Actual:', Actual)
+    print('Expected:', Expected)
+
+    # Test 16
+    Actual = practice_problem3(2, 5, -5)
+    Expected = [2, 3,4,5,6]
+
+    print()
+    print('Test 16')
+    print('Actual:', Actual)
+    print('Expected:', Expected)
+
+
 def practice_problem3(start, n, threshold):
     """
     What comes in:
@@ -209,7 +228,7 @@ def practice_problem3(start, n, threshold):
       :type threshold: float
     """
     ###########################################################################
-    # TODO: 3. Implement and test this function.
+    # Done: 3. Implement and test this function.
     #          Some tests are already written for you (above),
     #          but you are required to write ADDITIONAL tests (above).
     ###########################################################################
@@ -217,6 +236,22 @@ def practice_problem3(start, n, threshold):
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   < 15 minutes.
     ###########################################################################
+
+    list=[]
+    x=start
+    if n==0:
+        return list
+    elif threshold>math.sqrt(2):
+        for k in range(n):
+            list=list+[start+k]
+        return list
+    else:
+        while len(list)!=n:
+            if math.cos(x)+math.sin(x)>threshold:
+                list=list+[x]
+            x=x+1
+        return list
+
 
 
 # -----------------------------------------------------------------------------
